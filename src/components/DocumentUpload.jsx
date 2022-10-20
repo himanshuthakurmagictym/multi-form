@@ -1,8 +1,9 @@
 import React from 'react'
 
-function DocumentUpload({nextstep}) {
+function DocumentUpload({handleSubmit, nextstep}) {
   const onSubmit = (e)=>{
     e.preventDefault();
+    handleSubmit();
     nextstep();
 }
   return (
@@ -12,7 +13,7 @@ function DocumentUpload({nextstep}) {
          DOCUMENT UPLOAD
         </h5>
         <form onSubmit={onSubmit}>
-        <button type="submit" className='btn btn-primary text-right'>SAVE & NEXT </button>
+        <button type="submit" className='btn btn-success text-right'>Completed</button>
         </form>
      </div>
     </div>

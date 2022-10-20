@@ -20,12 +20,13 @@ function CreateAccount() {
   })
   const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch();
-  const {isLoading, isSuccess, isError} = useSelector(state => state);
+  const {isLoading, isSuccess, isError} = useSelector(state => state.auth);
 
   useEffect(()=>{
-    
+
     if(isSuccess){
       toast.success("Signup has been successfully ", { autoClose: 2000 });
+     
     }
     if(isError){
       toast.success("Error has Occur ", { autoClose: 2000 });
@@ -134,11 +135,11 @@ function CreateAccount() {
                :""}
 
                 {step ==4?
-                    <DocumentUpload nextstep={nextstep}/>
+                    <DocumentUpload handleSubmit={handleSubmit} nextstep={nextstep}/>
                 :""}
 
                 {step ==5?
-                    <Completed handleSubmit={handleSubmit}/>
+                    <Completed />
                 :""}
             </div>
             <div>
