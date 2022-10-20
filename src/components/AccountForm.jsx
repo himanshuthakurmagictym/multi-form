@@ -20,9 +20,9 @@ const handleImageFile = (e)=>{
      <p className='formParah'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam harum pariatur excepturi omnis error rerum nihil sed libero tempora commodi. Accusamus ducimus autem totam consequatur odit, hic esse est dolor!</p>
               <form onSubmit={onSubmit}>
                 <div className="row">
-                <div className="col-md-3">
+                <div className="col-md-3 text-center">
                 <input type="file" name="avatar"  className='fileuploader' onChange={handleImageFile}/>
-                <img src={avator?URL.createObjectURL(avator):`./Assets/Avatar.png`} width="100%" height="170px" />
+                <img src={avator?URL.createObjectURL(avator):`./Assets/Avatar.png`} width="170px" height="170px" />
                 <p className='uploaderHeading'>Upload</p>
                
                 </div>

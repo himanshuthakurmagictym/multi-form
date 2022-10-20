@@ -5,6 +5,10 @@ import PersonalDetail from "../../components/PersonalDetail";
 import EmployeeDetails from "../../components/EmployeeDetails";
 import DocumentUpload from "../../components/DocumentUpload";
 import Completed from "../../components/Completed";
+import {useSelector, useDispatch} from "react-redux"
+import { signup } from '../../features/create-account/authSlice';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function CreateAccount() {
   const [step, setStep] = useState(1);
   const [formdata, setFormdata] = useState({
@@ -15,6 +19,18 @@ function CreateAccount() {
     confirmPassword:''
   })
   const [formErrors, setFormErrors] = useState({});
+  const dispatch = useDispatch();
+  const {isLoading, isSuccess, isError} = useSelector(state => state);
+
+  useEffect(()=>{
+    
+    if(isSuccess){
+      toast.success("Signup has been successfully ", { autoClose: 2000 });
+    }
+    if(isError){
+      toast.success("Error has Occur ", { autoClose: 2000 });
+    }
+  },[isSuccess, isError])
 
   useEffect(()=>{
     if(formdata.confirmPassword !== formdata.password){
@@ -22,7 +38,7 @@ function CreateAccount() {
     }else{
       setFormErrors({password:""})
     }
-  },[formdata.confirmPassword])
+  },[formdata.confirmPassword, formdata.password])
 
   const nextstep =(e)=>{
     if(formdata.confirmPassword == formdata.password){
@@ -38,8 +54,7 @@ function CreateAccount() {
   }
 
   const handleSubmit = ()=>{
-    console.log(formdata)
-    // dispatchEvent({formdata}) 
+    dispatch(signup(formdata)); 
   }
 
   return (
@@ -52,12 +67,12 @@ function CreateAccount() {
           </div>
         </div>
       </div>
-      
+
       <div className='row mt-5'>
-        <div className='col-8 offset-md-2'>
+        <div className='col-md-8 offset-md-2 col-xs-12'>
           <div className='main'>
             <div className='process-header'>
-        
+              <ToastContainer />
             {/* accordion start */}
             <div className="steps">
               <progress className="progress" value={step*25} max="99"></progress>
