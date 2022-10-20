@@ -14,18 +14,21 @@ function CreateAccount() {
     avatar:'',
     confirmPassword:''
   })
-  const [formErrors, setFormErrors] = useState("");
+  const [formErrors, setFormErrors] = useState({});
 
   useEffect(()=>{
     if(formdata.confirmPassword !== formdata.password){
-      setFormErrors("password dont matched")
+      setFormErrors({password:"password dont matched"})
     }else{
-      setFormErrors("")
+      setFormErrors({password:""})
     }
   },[formdata.confirmPassword])
 
   const nextstep =(e)=>{
+    if(formdata.confirmPassword == formdata.password){
       setStep(pre=>pre+1);
+    }
+      
   }
   const handleChange = (e)=>{
     setFormdata({...formdata,[e.target.name]:e.target.value })
@@ -44,7 +47,7 @@ function CreateAccount() {
       <div className='row mt-5'>
         <div className='col-12 '>
           <div className='logo text-center'>
-            {formErrors}
+           
             <img src="./Assets/Logo.png" width="200px" height="100%" />
           </div>
         </div>
@@ -57,7 +60,7 @@ function CreateAccount() {
         
             {/* accordion start */}
             <div className="steps">
-              <progress className="progress" value="15" max="100"></progress>
+              <progress className="progress" value={step*25} max="99"></progress>
              
               <div className="stepcontainer">  
               <div className={`step ${step ==1?"activeStep":""}`}>1</div>
@@ -105,7 +108,7 @@ function CreateAccount() {
 
             <div className='process-body'>
               {step ==1?
-                <AccountForm nextstep={nextstep} handleChange={handleChange} handleImage={handleImage}/>
+                <AccountForm nextstep={nextstep} handleChange={handleChange} handleImage={handleImage} formErrors={formErrors}/>
               :""}
                {step ==2?
                 <PersonalDetail nextstep={nextstep}/>

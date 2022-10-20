@@ -29,6 +29,7 @@
     width: 99%;
     z-index: -1;
     top: 20%;
+    background-color:blue;
     height: 4%!important;
 }
 
@@ -54,4 +55,19 @@
     background-color: rgb(9, 158, 250);
     color:white;
     
+}
+
+  /* For Firefox */
+  progress::-moz-progress-bar {
+    background: rgb(9, 158, 250);
+}
+
+/* For Chrome or Safari */
+progress::-webkit-progress-value {
+    background: rgb(9, 158, 250);
+}
+
+/* For IE10 */
+progress {
+    background: rgb(9, 158, 250);
 }

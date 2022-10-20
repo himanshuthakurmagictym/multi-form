@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-function AccountForm({nextstep, handleChange, handleImage}) {
+function AccountForm({nextstep, handleChange, handleImage, formErrors}) {
   const [avator, setAvator] = useState("")
   const onSubmit = (e)=>{
       e.preventDefault();
@@ -39,8 +39,9 @@ const handleImageFile = (e)=>{
                         <label className='form-label'>E-mail</label>
                         <input type="email" placeholder='E-mail' 
                           name="email"
+                          required
                          onChange={handleChange}className='form-control'/>
-                         required
+                         
                       </div>
 
                   </div>
@@ -62,6 +63,9 @@ const handleImageFile = (e)=>{
                          onChange={handleChange}
                          required
                          className='form-control'/>
+                       <div className='error'>
+                       {formErrors.password}
+                       </div>
                       </div>
                       <div className='submitButton'>
                           <button  type="submit" className='btn btn-primary text-left '>SAVE & NEXT</button>
