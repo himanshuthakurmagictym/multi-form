@@ -51,11 +51,12 @@ function CreateAccount() {
     setFormdata({...formdata,[e.target.name]:e.target.value })
   }
   const handleImage = (e)=>{
-    setFormdata({...formdata,[e.target.name]:e.target.files[0] })
+    const finalUrl = URL.createObjectURL(e.target.files[0])
+    setFormdata({...formdata,[e.target.name]:finalUrl })
   }
 
   const handleSubmit = ()=>{
-    dispatch(signup(formdata)); 
+     dispatch(signup(formdata)); 
   }
 
   return (
